@@ -1,11 +1,13 @@
 import React from "react";
 
+// プロップスで受け取る要素の型指定
 type Props = {
   todo: string;
   onSetTodo: (e: string) => void;
   onHandleAddTodo: () => void;
 };
 
+// ファンクショナルコンポーネントとして型を指定
 const AddTodoForm: React.FC<Props> = ({ todo, onSetTodo, onHandleAddTodo }) => {
   return (
     <>

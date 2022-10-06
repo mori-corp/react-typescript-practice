@@ -21,13 +21,19 @@ function App() {
     }
   });
 
+  // isCompletedはboolean型として指定
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
+  
+  // currentTodoはオブジェクトとして、todoのプロパティを保持する。
+  // 外部（src/types/currenTodo.ts）から、型を読み込み
   const [currentTodo, setCurrentTodo] = useState<CurrentTodo>({
     id: "",
     text: "",
     isCompleted: false,
   });
-  const [isEdit, setIsEdit] = useState(false);
+
+  // isEditはboolean型として指定
+  const [isEdit, setIsEdit] = useState<boolean>(false);
 
   // ローカルストレージへの保存
   useEffect(() => {
@@ -51,7 +57,7 @@ function App() {
   };
 
   // deleteボタンをクリックした時の関数
-  // 引数todoの型は、上記で宣言したTodoTypeを指定
+  // 引数todoの型は、外部（src/types/todo.ts）から、TodoTypeをインポート
   const handleDeleteButtonClick = (todo: TodoType) => {
     const removeItem = todos.filter((t) => {
       return t.id !== todo.id;
@@ -60,13 +66,14 @@ function App() {
   };
 
   // ステータス更新ボタンの関数
-  // 引数todoの型は、上記で宣言したTodoTypeを指定
+  // 引数todoの型は、外部（src/types/todo.ts）から、TodoTypeをインポート
   const handleStatusButtonClick = (todo: TodoType) => {
     setIsCompleted(!isCompleted);
     todo.isCompleted = !todo.isCompleted;
   };
 
   // Editボタンクリック
+  // 引数todoの型は、外部（src/types/todo.ts）から、TodoTypeをインポート
   const handleEditButtonClick = (todo: TodoType) => {
     setIsEdit(true);
     setCurrentTodo({ ...todo });
